@@ -1,7 +1,13 @@
 "use client";
 
 import React, { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import {
+  Description,
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+} from "@headlessui/react";
 
 const Modal = () => {
   let [isOpen, setIsOpen] = useState(false);
@@ -18,7 +24,7 @@ const Modal = () => {
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" onClose={closeModal} className="dialog-container">
-          <div className="min-h-screen px-4 text-center">
+          {/* <div className="min-h-screen px-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -43,7 +49,32 @@ const Modal = () => {
             >
               <div className="dialog-content"></div>
             </Transition.Child>
-          </div>
+          </div> */}
+
+          <Dialog
+            open={isOpen}
+            onClose={() => setIsOpen(false)}
+            className="relative z-50"
+          >
+            <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+              <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
+                <DialogTitle className="font-bold">
+                  Deactivate account
+                </DialogTitle>
+                <Description>
+                  This will permanently deactivate your account
+                </Description>
+                <p>
+                  Are you sure you want to deactivate your account? All of your
+                  data will be permanently removed.
+                </p>
+                <div className="flex gap-4">
+                  <button onClick={() => setIsOpen(false)}>Cancel</button>
+                  <button onClick={() => setIsOpen(false)}>Deactivate</button>
+                </div>
+              </DialogPanel>
+            </div>
+          </Dialog>
         </Dialog>
       </Transition>
     </>
