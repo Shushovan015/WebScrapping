@@ -50,7 +50,7 @@ const Modal = () => {
               <div className="dialog-content"></div>
             </Transition.Child>
           </div> */}
-
+          {/* This is the starting of dialogue box */}
           <Dialog
             open={isOpen}
             onClose={() => setIsOpen(false)}
